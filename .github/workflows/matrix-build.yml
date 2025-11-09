@@ -14,10 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        version: [14, 16, 18]  # Node versions (you can change to Python or OS matrix)
-        # Alternatively:
-        # os: [ubuntu-latest, windows-latest, macos-latest]
-        # python-version: ['3.9', '3.10', '3.11']
+        version: [14, 16, 18]   # ✅ 3 variants defined here
 
     steps:
       - name: Checkout repository
@@ -33,11 +30,8 @@ jobs:
 
       - name: Generate build artifact
         run: |
-          echo "This is build output for version ${{ matrix.version }}" > output-${{ matrix.version }}.txt
-          echo "Matrix identifier: matrix-675ae2a" >> output-${{ matrix.version }}.txt
-
-      - name: Verify file content
-        run: cat output-${{ matrix.version }}.txt
+          echo "Build output for Node version ${{ matrix.version }}" > output-${{ matrix.version }}.txt
+          echo "matrix-675ae2a" >> output-${{ matrix.version }}.txt
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
